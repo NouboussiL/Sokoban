@@ -60,17 +60,18 @@ public class Controleur implements Sujet{
 
 
 
-    public char[][] getPlato(String path) throws IOException {
+    public void getPlato(String path) throws IOException {
         String nomFich = traiterChemin(path);
         if(nomFich.endsWith(".xsb")) {
             Object[] o = lireFichier(nomFich);
             char[][] tab = generatePlato((String) o[2], (int) o[0], (int) o[1]);
             this.facadeModele.setPlateau(tab);
-            return tab;
+            this.facadeModele.setPosition(getCoordinate(tab));
+            notifie();
         } else {
             System.out.println("Mauvais format");
         }
-        return null;
+
     }
 
     /**

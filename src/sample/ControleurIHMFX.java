@@ -28,11 +28,9 @@ public class ControleurIHMFX {
         public void handle(ActionEvent event){
             String path = getPath();
             try{
-                controleur.setPlateau(controleur.getPlato(path));
-                controleur.setPosition(controleur.getCoordinate(controleur.getPlato(path)));
                 controleur.setDonnees(new int[]{0,0});
-                vue = new VueIHMFX(controleur);
-                controleur.notifie();
+                vue.reinitialiserVue();
+                controleur.getPlato(path);
             }catch(IOException e){
                 System.out.println(e.getStackTrace());
             }

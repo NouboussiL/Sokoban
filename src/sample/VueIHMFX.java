@@ -27,43 +27,25 @@ public class VueIHMFX {
 
     public VueIHMFX(Controleur controleur)throws FileNotFoundException{
         commandeGetPlateau = controleur.commandePlateau();
-        plateauImages = new Rectangle[commandeGetPlateau.exec().length][commandeGetPlateau.exec()[0].length];
-        for(int i = 0 ; i< commandeGetPlateau.exec().length;i++){
-            for(int j = 0; j < commandeGetPlateau.exec()[0].length;j++){
-                plateauImages[i][j]= new Rectangle(50,50);
-                switch (commandeGetPlateau.exec()[i][j]){
-                    case ' ':
-                        plateauImages[i][j].setFill(Color.WHITE);
-                        break;
-                    case '#':
-                        plateauImages[i][j].setFill(new ImagePattern(images[3]));
-                        break;
-                    case '*':
-                        plateauImages[i][j].setFill(new ImagePattern(images[1]));
-                        break;
-                    case '$':
-                        plateauImages[i][j].setFill(new ImagePattern(images[2]));
-                        break;
-                    case '@':
-                        plateauImages[i][j].setFill(new ImagePattern(images[0]));
-                        break;
-                    case '+':
-                        plateauImages[i][j].setFill(new ImagePattern(images[0]));
-                        break;
-                    case '.':
-                        plateauImages[i][j].setFill(new ImagePattern(images[4]));
-                        break;
-                }
-                gridPane.add(plateauImages[i][j],i,j);
-            }
-        }
         dessine();
     }
 
 
 
     public void dessine(){
-        for(int i = 0 ; i< commandeGetPlateau.exec().length;i++) {
+        if(commandeGetPlateau.exec()!=null) {
+            if (plateauImages == null) {
+                plateauImages = new Rectangle[commandeGetPlateau.exec().length][commandeGetPlateau.exec()[0].length];
+                remplirPlateauImages(false);
+            }else{
+                remplirPlateauImages(true);
+            }
+
+        }
+    }
+
+    private void remplirPlateauImages(boolean b){
+        for (int i = 0; i < commandeGetPlateau.exec().length; i++)
             for (int j = 0; j < commandeGetPlateau.exec()[0].length; j++) {
                 plateauImages[i][j] = new Rectangle(50, 50);
                 switch (commandeGetPlateau.exec()[i][j]) {
@@ -89,9 +71,20 @@ public class VueIHMFX {
                         plateauImages[i][j].setFill(new ImagePattern(images[4]));
                         break;
                 }
+                if(!b)
+                    gridPane.add(plateauImages[i][j], i, j);
             }
-        }
     }
 
+
+    public void reinitialiserVue(){
+        if(plateauImages!=null) {
+
+            for (int i = 0; i < commandeGetPlateau.exec().length; i++)
+                for (int j = 0; j < commandeGetPlateau.exec()[0].length; j++)
+                    gridPane.getChildren().remove(plateauImages[i][j]);
+            plateauImages = null;
+        }
+    }
 
 }

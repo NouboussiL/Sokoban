@@ -20,20 +20,22 @@ public class ModeleConcret implements Modele{
                 break;
 
             case UP:
-                move(1,0);
+                move(-1,0);
                 break;
 
             case DOWN:
-                move(-1,0);
+                move(1,0);
                 break;
         }
+        System.out.println(position[0]+","+position[1]);
+        Controleur.getControleur().afficherPlato(plateau);
     }
 
 
     private void move(int vertical, int horizontal) {
         int x = position[0];
         int y = position[1];
-        System.out.println(x+","+y);
+
         boolean b = (y+2*horizontal<0)||(x+2*vertical<0)||(plateau.length<x+2*vertical)||(plateau[0].length<y+2*horizontal);
         switch(plateau[x+vertical][y+horizontal]){
             case '#':
