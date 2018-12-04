@@ -45,7 +45,7 @@ public class ModeleConcret implements Modele{
                 else
                     plateau[x][y]='.';
                 plateau[x+vertical][y+horizontal]='@';
-                setPosWhileMove(vertical);
+                setPosWhileMove(vertical,vertical);
                 donnees[0]++;
                 break;
 
@@ -55,7 +55,7 @@ public class ModeleConcret implements Modele{
                 else
                     plateau[x][y]='.';
                 plateau[x+vertical][y+horizontal]='+';
-                setPosWhileMove(vertical);
+                setPosWhileMove(vertical,horizontal);
                 donnees[0]++;
                 break;
 
@@ -79,7 +79,7 @@ public class ModeleConcret implements Modele{
                         else
                             plateau[x][y] = '.';
                         plateau[x + vertical][y + horizontal] = '@';
-                        setPosWhileMove(vertical);
+                        setPosWhileMove(vertical,horizontal);
                         donnees[0]++;
 
 
@@ -95,7 +95,7 @@ public class ModeleConcret implements Modele{
                     else
                         plateau[x][y] = '.';
                     plateau[x+vertical][y+horizontal]='+';
-                    setPosWhileMove(vertical);
+                    setPosWhileMove(vertical,horizontal);
                     donnees[0]++;
                     switch(plateau[x + 2 * vertical][y + 2 * horizontal]){
                         case ' ':
@@ -138,10 +138,10 @@ public class ModeleConcret implements Modele{
         this.donnees = donnees;
     }
 
-    private void setPosWhileMove(int ver){
+    private void setPosWhileMove(int ver, int ho){
         if (ver != 0)
-            position[0]++;
+            position[0]+=ver;
         else
-            position[1]++;
+            position[1]+=ho;
     }
 }
