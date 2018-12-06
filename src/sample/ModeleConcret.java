@@ -47,7 +47,7 @@ public class ModeleConcret implements Modele{
                 else
                     plateau[x][y]='.';
                 plateau[x+vertical][y+horizontal]='@';
-                setPosWhileMove(vertical,vertical);
+                setPosWhileMove(vertical,horizontal);
                 donnees[0]++;
                 break;
 
@@ -65,25 +65,26 @@ public class ModeleConcret implements Modele{
                 if(b)
                     break;
                 else{
-                    switch(plateau[x + 2 * vertical][y + 2 * horizontal]){
-                        case ' ':
-                            plateau[x + 2 * vertical][y + 2 * horizontal] = '$';
-                            break;
+                    if(plateau[x + 2 * vertical][y + 2 * horizontal] != '#') {
+                        switch (plateau[x + 2 * vertical][y + 2 * horizontal]) {
+                            case ' ':
+                                plateau[x + 2 * vertical][y + 2 * horizontal] = '$';
+                                break;
 
-                        case '.':
-                            plateau[x + 2 * vertical][y + 2 * horizontal] = '*';
-                            donnees[1]--;
-                            break;
-                    }
+                            case '.':
+                                plateau[x + 2 * vertical][y + 2 * horizontal] = '*';
+                                donnees[1]--;
+                                break;
+                        }
 
                         if (plateau[x][y] == '@')
                             plateau[x][y] = ' ';
                         else
                             plateau[x][y] = '.';
                         plateau[x + vertical][y + horizontal] = '@';
-                        setPosWhileMove(vertical,horizontal);
+                        setPosWhileMove(vertical, horizontal);
                         donnees[0]++;
-
+                    }
 
                 }
                 break;
@@ -91,23 +92,25 @@ public class ModeleConcret implements Modele{
             case '*':
                 if(b)
                     break;
-                else{
-                    if(plateau[x][y]=='@')
-                        plateau[x][y] = ' ';
-                    else
-                        plateau[x][y] = '.';
-                    plateau[x+vertical][y+horizontal]='+';
-                    setPosWhileMove(vertical,horizontal);
-                    donnees[0]++;
-                    switch(plateau[x + 2 * vertical][y + 2 * horizontal]){
-                        case ' ':
-                            plateau[x + 2 * vertical][y + 2 * horizontal] = '$';
-                            donnees[1]++;
-                            break;
+                else {
+                    if (plateau[x + 2 * vertical][y + 2 * horizontal] != '#') {
+                        if (plateau[x][y] == '@')
+                            plateau[x][y] = ' ';
+                        else
+                            plateau[x][y] = '.';
+                        plateau[x + vertical][y + horizontal] = '+';
+                        setPosWhileMove(vertical, horizontal);
+                        donnees[0]++;
+                        switch (plateau[x + 2 * vertical][y + 2 * horizontal]) {
+                            case ' ':
+                                plateau[x + 2 * vertical][y + 2 * horizontal] = '$';
+                                donnees[1]++;
+                                break;
 
-                        case '.':
-                            plateau[x + 2 * vertical][y + 2 * horizontal] = '*';
-                            break;
+                            case '.':
+                                plateau[x + 2 * vertical][y + 2 * horizontal] = '*';
+                                break;
+                        }
                     }
                 }
                 break;

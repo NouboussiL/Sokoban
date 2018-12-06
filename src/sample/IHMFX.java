@@ -25,7 +25,7 @@ public class IHMFX extends Application implements Observateur {
         vue.gridPane.setAlignment(Pos.CENTER);
 
         /*montage de la scene*/
-        Scene scene = definirFenetre(primaryStage, vue.gridPane,controleur, controleurIHMFX);
+        Scene scene = definirFenetre(primaryStage, vue.gridPane, controleurIHMFX);
 
         scene.setOnKeyPressed(new ActionMove());
 
@@ -46,7 +46,7 @@ public class IHMFX extends Application implements Observateur {
 
     void lance(){launch(new String[]{});}
 
-    private Scene definirFenetre(Stage window, Region node, Controleur controleur, ControleurIHMFX controleurIHMFX){
+    private Scene definirFenetre(Stage window, Region node, ControleurIHMFX controleurIHMFX){
         MonteurScene monteurScene = new MonteurScene();
 
         Scene scene = monteurScene.
