@@ -34,17 +34,14 @@ public class VueIHMFX {
 
     public void dessine(){
         if(commandeGetPlateau.exec()!=null) {
-            if (plateauImages == null) {
                 plateauImages = new Rectangle[commandeGetPlateau.exec().length][commandeGetPlateau.exec()[0].length];
-                remplirPlateauImages(false);
-            }else{
-                remplirPlateauImages(true);
-            }
+                remplirPlateauImages();
+
 
         }
     }
 
-    private void remplirPlateauImages(boolean b){
+    private void remplirPlateauImages(){
         for (int i = 0; i < commandeGetPlateau.exec().length; i++)
             for (int j = 0; j < commandeGetPlateau.exec()[0].length; j++) {
                 plateauImages[i][j] = new Rectangle(50, 50);
@@ -71,8 +68,10 @@ public class VueIHMFX {
                         plateauImages[i][j].setFill(new ImagePattern(images[4]));
                         break;
                 }
-                if(!b)
-                    gridPane.add(plateauImages[i][j], i, j);
+                    GridPane.setRowIndex(plateauImages[i][j], i);
+                    GridPane.setColumnIndex(plateauImages[i][j], j);
+                    gridPane.getChildren().add(plateauImages[i][j]);
+
             }
     }
 

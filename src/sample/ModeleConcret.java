@@ -37,6 +37,8 @@ public class ModeleConcret implements Modele{
         int y = position[1];
 
         boolean b = (y+2*horizontal<0)||(x+2*vertical<0)||(plateau.length<x+2*vertical)||(plateau[0].length<y+2*horizontal);
+        boolean a = plateau[x + 2 * vertical][y + 2 * horizontal] != '#' && plateau[x + 2 * vertical][y + 2 * horizontal] !='$' &&
+                plateau[x + 2 * vertical][y + 2 * horizontal]!='*';
         switch(plateau[x+vertical][y+horizontal]){
             case '#':
                 break;
@@ -65,7 +67,7 @@ public class ModeleConcret implements Modele{
                 if(b)
                     break;
                 else{
-                    if(plateau[x + 2 * vertical][y + 2 * horizontal] != '#') {
+                    if(a) {
                         switch (plateau[x + 2 * vertical][y + 2 * horizontal]) {
                             case ' ':
                                 plateau[x + 2 * vertical][y + 2 * horizontal] = '$';
@@ -93,7 +95,7 @@ public class ModeleConcret implements Modele{
                 if(b)
                     break;
                 else {
-                    if (plateau[x + 2 * vertical][y + 2 * horizontal] != '#') {
+                    if (a) {
                         if (plateau[x][y] == '@')
                             plateau[x][y] = ' ';
                         else
