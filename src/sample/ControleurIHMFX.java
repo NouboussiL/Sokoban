@@ -28,7 +28,6 @@ public class ControleurIHMFX {
         public void handle(ActionEvent event){
             String path = getPath();
             try{
-                controleur.setDonnees(new int[]{0,0});
                 vue.reinitialiserVue();
                 controleur.getPlato(path);
             }catch(IOException e){

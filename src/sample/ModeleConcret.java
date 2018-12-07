@@ -27,6 +27,7 @@ public class ModeleConcret implements Modele{
                 move(1,0);
                 break;
         }
+        System.out.println(donnees[0]+","+donnees[1]);
         System.out.println(position[0]+","+position[1]);
         Controleur.getControleur().afficherPlato(plateau);
     }
@@ -37,7 +38,7 @@ public class ModeleConcret implements Modele{
         int y = position[1];
 
         boolean b = (y+2*horizontal<0)||(x+2*vertical<0)||(plateau.length<x+2*vertical)||(plateau[0].length<y+2*horizontal);
-        boolean a = plateau[x + 2 * vertical][y + 2 * horizontal] != '#' && plateau[x + 2 * vertical][y + 2 * horizontal] !='$' &&
+        boolean a = plateau[x+vertical][y+horizontal]=='#'?false:plateau[x + 2 * vertical][y + 2 * horizontal] != '#' && plateau[x + 2 * vertical][y + 2 * horizontal] !='$' &&
                 plateau[x + 2 * vertical][y + 2 * horizontal]!='*';
         switch(plateau[x+vertical][y+horizontal]){
             case '#':

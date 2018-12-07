@@ -64,9 +64,7 @@ public class Controleur implements Sujet{
         String nomFich = traiterChemin(path);
         if(nomFich.endsWith(".xsb")) {
             Object[] o = lireFichier(nomFich);
-            char[][] tab = generatePlato((String) o[2], (int) o[0], (int) o[1]);
-            this.facadeModele.setPlateau(tab);
-            this.facadeModele.setPosition(getCoordinate(tab));
+            generatePlato((String) o[2], (int) o[0], (int) o[1]);
             notifie();
         } else {
             System.out.println("Mauvais format");
@@ -74,21 +72,6 @@ public class Controleur implements Sujet{
 
     }
 
-    /**
-     * return les coordonnées du bonhomme
-     * @param plato plato du jeu
-     * @return les coordonnées du bonhomme
-     */
-    public int[] getCoordinate(char[][] plato){
-        for (int i = 0; i < plato.length; i++) {
-            for (int j = 0; j < plato[0].length; j++) {
-                if ( (plato[i][j]== '@') || (plato[i][j]== '+') )  {
-                    return new int[]{i,j};
-                }
-            }
-        }
-        return null;
-    }
 
     /**
      *
@@ -96,8 +79,8 @@ public class Controleur implements Sujet{
      * @return return la fin du chemin
      */
     public String traiterChemin(String chemin){
-        String[] ts = chemin.split("\\\\");
-        return ts[ts.length-2] + "\\" + ts[ts.length-1];
+        String[] ts = chemin.split("/");
+        return ts[ts.length-2] + "/" + ts[ts.length-1];
     }
 
 
@@ -122,21 +105,33 @@ public class Controleur implements Sujet{
      * @param l la largeur du plato
      * @return le tableau contenant le plato du jeu
      */
-    public char[][] generatePlato(String plato, int h, int l){
+    public void generatePlato(String plato, int h, int l){
         char[][] grille = new char[h][l];
+        int n=0;
         Scanner sc = new Scanner (plato);
         sc.useDelimiter("\n");
         for (int i = 0; i < h; i++) {
             String ligne = sc.next();
-            int size = ligne.length()-1;
+            int size = ligne.length();
             for (int j = 0; j < size; j++) {
+                switch(ligne.charAt(j)){
+                    case '@': setPosition(new int[]{i,j});
+                        break;
+
+                    case '$': n++;
+                        break;
+
+                    case '+': setPosition(new int[]{i,j});
+                        break;
+                }
                 grille[i][j] = ligne.charAt(j);
             }
             for (int k = size; k < l; k++) {
                 grille[i][k] = ' ';
             }
         }
-        return grille;
+        setDonnees(new int[]{0,n});
+        setPlateau(grille);
     }
 
 
@@ -163,7 +158,7 @@ public class Controleur implements Sujet{
                     plato += ligne;
                     plato += "\n";
                     if (ligne.length() > largeur) {
-                        largeur = ligne.length()-1;
+                        largeur = ligne.length();
                     }
                 } else {
                     String info = "";

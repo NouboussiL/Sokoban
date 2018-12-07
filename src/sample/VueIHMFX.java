@@ -17,11 +17,11 @@ public class VueIHMFX {
 
 
     Image[] images = new Image[]{
-        new Image(new FileInputStream("D:\\L3_Info\\COO\\Projet\\Sokoban\\images\\walter_white.jpeg"),50,50,false,false),
-        new Image(new FileInputStream("D:\\L3_Info\\COO\\Projet\\Sokoban\\images\\varil_close.jpeg"),50,50,false,false),
-        new Image(new FileInputStream("D:\\L3_Info\\COO\\Projet\\Sokoban\\images\\varil_open.jpg"),50,50,false,false),
-        new Image(new FileInputStream("D:\\L3_Info\\COO\\Projet\\Sokoban\\images\\wall.jpg"),50,50,false,false),
-        new Image(new FileInputStream("D:\\L3_Info\\COO\\Projet\\Sokoban\\images\\location.jpg"),50,50,false,false)
+        new Image(new FileInputStream("images/walter_white.jpeg"),50,50,false,false),
+        new Image(new FileInputStream("images/varil_close.jpeg"),50,50,false,false),
+        new Image(new FileInputStream("images/varil_open.jpg"),50,50,false,false),
+        new Image(new FileInputStream("images/wall.jpg"),50,50,false,false),
+        new Image(new FileInputStream("images/location.jpg"),50,50,false,false)
     };
 
 
