@@ -9,6 +9,7 @@ import javafx.scene.layout.Region;
 import java.util.ArrayList;
 
 public class MonteurScene {
+    Region haut;
     ArrayList<Region> bas = new ArrayList<>();
     Region centre;
     int largeur = 1000;
@@ -29,6 +30,11 @@ public class MonteurScene {
         return this;
     }
 
+    public MonteurScene setHaut(Region node){
+        haut= node;
+        return this;
+    }
+
     public MonteurScene ajoutBas(Region node){
         bas.add(node);
         return this;
@@ -40,7 +46,8 @@ public class MonteurScene {
         GridPane gridPane = new GridPane();
 
         gridPane.setAlignment(Pos.CENTER);
-        gridPane.add(centre,0,0);
+        gridPane.add(haut,0,0);
+        gridPane.add(centre,0,1);
         gridPane.setMinSize(largeur,hauteur);
 
         //Setting the padding
@@ -59,7 +66,7 @@ public class MonteurScene {
                 gridPaneBas.add(n,i,0);
                 i++;
             }
-            gridPane.add(gridPaneBas,0,1);
+            gridPane.add(gridPaneBas,0,2);
         }
         return new Scene(gridPane,largeur,hauteur);
     }

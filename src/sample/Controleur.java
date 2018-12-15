@@ -42,6 +42,7 @@ public class Controleur implements Sujet{
     public void move(KeyCode key){
         facadeModele.move(key);
         notifie();
+
     }
 
     public CommandePlateau commandePlateau(){

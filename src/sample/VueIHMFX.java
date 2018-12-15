@@ -1,5 +1,6 @@
 package sample;
 
+import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.layout.GridPane;
 import javafx.scene.paint.Color;
@@ -13,6 +14,7 @@ public class VueIHMFX {
 
     CommandePlateau commandeGetPlateau;
     GridPane gridPane = new GridPane();
+    Label text;
     Rectangle[][] plateauImages;
 
 
@@ -28,6 +30,7 @@ public class VueIHMFX {
     public VueIHMFX(Controleur controleur)throws FileNotFoundException{
         commandeGetPlateau = controleur.commandePlateau();
         dessine();
+        text = new Label();
     }
 
 
@@ -35,9 +38,12 @@ public class VueIHMFX {
     public void dessine(){
         if(commandeGetPlateau.exec()!=null) {
                 plateauImages = new Rectangle[commandeGetPlateau.exec().length][commandeGetPlateau.exec()[0].length];
+                if (Controleur.getControleur().getDonnees()[1]!=0)
+                    text.setText("Nombre de Coups : "+Controleur.getControleur().getDonnees()[0]);
+                else
+                    text.setText("Vous avez gagné en "+Controleur.getControleur().getDonnees()[0]+" coups.");
+
                 remplirPlateauImages();
-
-
         }
     }
 
@@ -79,9 +85,7 @@ public class VueIHMFX {
     public void reinitialiserVue(){
         if(plateauImages!=null) {
 
-            for (int i = 0; i < commandeGetPlateau.exec().length; i++)
-                for (int j = 0; j < commandeGetPlateau.exec()[0].length; j++)
-                    gridPane.getChildren().remove(plateauImages[i][j]);
+            gridPane.getChildren().remove(0,gridPane.getChildren().size());
             plateauImages = null;
         }
     }

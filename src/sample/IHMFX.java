@@ -25,11 +25,11 @@ public class IHMFX extends Application implements Observateur {
         vue.gridPane.setAlignment(Pos.CENTER);
 
         /*montage de la scene*/
-        Scene scene = definirFenetre(primaryStage, vue.gridPane, controleurIHMFX);
+        Scene scene = definirFenetre(primaryStage, vue.gridPane, controleurIHMFX,vue.text);
 
         scene.setOnKeyPressed(new ActionMove());
 
-        primaryStage.setTitle("Sokoban");
+        primaryStage.setTitle("Sokoban Walter White");
         primaryStage.show();
     }
 
@@ -46,7 +46,7 @@ public class IHMFX extends Application implements Observateur {
 
     void lance(){launch(new String[]{});}
 
-    private Scene definirFenetre(Stage window, Region node, ControleurIHMFX controleurIHMFX){
+    private Scene definirFenetre(Stage window, Region node, ControleurIHMFX controleurIHMFX,Region node1){
         MonteurScene monteurScene = new MonteurScene();
 
         Scene scene = monteurScene.
@@ -54,23 +54,21 @@ public class IHMFX extends Application implements Observateur {
                 ajoutBas(controleurIHMFX.select).
                 setLargeur(1000).
                 setHauteur(1000).
+                setHaut(node1).
                 retourneScene();
 
         window.setScene(scene);
         return scene;
     }
 
-    private void handle(KeyEvent e, Controleur controleur){
-        controleur.move(e.getCode());
-        actualise();
 
-    }
 
     class ActionMove implements EventHandler<KeyEvent>{
         public void handle(KeyEvent e){
-            if(Controleur.getControleur().commandePlateau().exec()!=null){
-                Controleur.getControleur().move(e.getCode());
-                actualise();
+            if(Controleur.getControleur().commandePlateau().exec()!=null && Controleur.getControleur().getDonnees()[1]!=0){
+                    Controleur.getControleur().move(e.getCode());
+                    actualise();
+
             }
         }
     }
