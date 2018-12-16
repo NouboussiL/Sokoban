@@ -29,8 +29,9 @@ public class VueIHMFX {
 
     public VueIHMFX(Controleur controleur)throws FileNotFoundException{
         commandeGetPlateau = controleur.commandePlateau();
-        dessine();
         text = new Label();
+        dessine();
+
     }
 
 

@@ -49,6 +49,8 @@ public class Controleur implements Sujet{
         return () -> facadeModele.getPlateau();
     }
 
+    public CommandeListe commandeListe(){return ()-> facadeModele.getListe();}
+
     public void setPosition(int[] pos){facadeModele.setPosition(pos);}
     public int[] getPosition(){return facadeModele.getPosition();}
 
@@ -57,6 +59,12 @@ public class Controleur implements Sujet{
 
     public void setPlateau(char[][] plateau){facadeModele.setPlateau(plateau);}
     public char[][] getPlateau(){return facadeModele.getPlateau();}
+
+
+    public void undo(){
+        facadeModele.undo();
+        notifie();
+    }
 
 
 

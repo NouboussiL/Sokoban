@@ -27,9 +27,6 @@ public class ModeleConcret implements Modele{
                 move(1,0);
                 break;
         }
-        System.out.println(donnees[0]+","+donnees[1]);
-        System.out.println(position[0]+","+position[1]);
-        Controleur.getControleur().afficherPlato(plateau);
     }
 
 

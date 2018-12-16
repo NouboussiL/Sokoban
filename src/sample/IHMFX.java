@@ -52,6 +52,7 @@ public class IHMFX extends Application implements Observateur {
         Scene scene = monteurScene.
                 setCentre(node).
                 ajoutBas(controleurIHMFX.select).
+                ajoutBas(controleurIHMFX.undo).
                 setLargeur(1000).
                 setHauteur(1000).
                 setHaut(node1).
@@ -67,7 +68,6 @@ public class IHMFX extends Application implements Observateur {
         public void handle(KeyEvent e){
             if(Controleur.getControleur().commandePlateau().exec()!=null && Controleur.getControleur().getDonnees()[1]!=0){
                     Controleur.getControleur().move(e.getCode());
-                    actualise();
 
             }
         }

@@ -5,7 +5,7 @@ import javafx.scene.input.KeyCode;
 import java.util.ArrayList;
 public class ModeleList implements Modele{
 
-    Modele modele;
+    private Modele modele;
 
     ArrayList<Modele> liste;
     ArrayList<Modele> listeUndo;
@@ -52,5 +52,21 @@ public class ModeleList implements Modele{
     @Override
     public void setDonnees(int[] donnees) {
         modele.setDonnees(donnees);
+    }
+
+
+    public ArrayList<Modele> getListe(){
+        return liste;
+    }
+
+    public void undo(){
+        if(liste.size()>1){
+            listeUndo.add(modele);
+            liste.remove(modele);
+            Modele mod = liste.get(liste.size()-1);
+            modele.setPlateau(mod.getPlateau());
+            modele.setDonnees(mod.getDonnees());
+            modele.setPosition(mod.getPosition());
+        }
     }
 }
