@@ -66,7 +66,15 @@ public class Controleur implements Sujet{
         notifie();
     }
 
+    public void redo(){
+        facadeModele.redo();
+        notifie();
+    }
 
+    public void reset(){
+        facadeModele.reset();
+        notifie();
+    }
 
 
     public void getPlato(String path) throws IOException {
@@ -116,6 +124,7 @@ public class Controleur implements Sujet{
      */
     public void generatePlato(String plato, int h, int l){
         char[][] grille = new char[h][l];
+        int[] position = new int[2];
         int n=0;
         Scanner sc = new Scanner (plato);
         sc.useDelimiter("\n");
@@ -124,13 +133,13 @@ public class Controleur implements Sujet{
             int size = ligne.length();
             for (int j = 0; j < size; j++) {
                 switch(ligne.charAt(j)){
-                    case '@': setPosition(new int[]{i,j});
+                    case '@': position = new int[]{i,j};
                         break;
 
                     case '$': n++;
                         break;
 
-                    case '+': setPosition(new int[]{i,j});
+                    case '+': position=new int[]{i,j};
                         break;
                 }
                 grille[i][j] = ligne.charAt(j);
@@ -139,8 +148,9 @@ public class Controleur implements Sujet{
                 grille[i][k] = ' ';
             }
         }
-        setDonnees(new int[]{0,n});
-        setPlateau(grille);
+        facadeModele.initialiser(grille,position,new int[]{0,n});
+        //setDonnees(new int[]{0,n});
+        //setPlateau(grille);
     }
 
 

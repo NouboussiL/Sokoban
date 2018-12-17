@@ -38,10 +38,6 @@ public class IHMFX extends Application implements Observateur {
         Platform.runLater(() -> {
             vue.dessine();
         });
-
-
-
-
     }
 
     void lance(){launch(new String[]{});}
@@ -53,6 +49,8 @@ public class IHMFX extends Application implements Observateur {
                 setCentre(node).
                 ajoutBas(controleurIHMFX.select).
                 ajoutBas(controleurIHMFX.undo).
+                ajoutBas(controleurIHMFX.redo).
+                ajoutBas(controleurIHMFX.reset).
                 setLargeur(1000).
                 setHauteur(1000).
                 setHaut(node1).

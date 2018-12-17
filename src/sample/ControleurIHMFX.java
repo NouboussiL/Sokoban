@@ -18,6 +18,7 @@ public class ControleurIHMFX {
     Button reanimer;
     Button undo;
     Button redo;
+    Button reset;
 
     ControleurIHMFX(Controleur controleur, VueIHMFX vue){
         this.controleur=controleur;
@@ -31,6 +32,12 @@ public class ControleurIHMFX {
 
         undo = new Button("Undo");
         undo.setOnAction(new ActionUndo());
+
+        redo = new Button("Redo");
+        redo.setOnAction(new ActionRedo());
+
+        reset = new Button("Reset");
+        reset.setOnAction(new ActionReset());
     }
 
     class ActionSelection implements EventHandler<ActionEvent>{
@@ -58,6 +65,20 @@ public class ControleurIHMFX {
         @Override
         public void handle(ActionEvent event){
             controleur.undo();
+        }
+    }
+
+    class ActionRedo implements EventHandler<ActionEvent>{
+        @Override
+        public void handle(ActionEvent event){
+            controleur.redo();
+        }
+    }
+
+    class ActionReset implements EventHandler<ActionEvent>{
+        @Override
+        public void handle(ActionEvent event){
+            controleur.reset();
         }
     }
 

@@ -12,5 +12,7 @@ public interface Modele {
     int[] getDonnees();
     void setDonnees(int[] donnees);
 
+    void initialiser(char[][] plateau,int[] position, int[] donnees);
+
 
 }

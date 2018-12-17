@@ -119,7 +119,13 @@ public class ModeleConcret implements Modele{
     }
 
     public char[][] getPlateau(){
-        return plateau;
+        if(plateau==null) return null;
+        char[][] plat = new char[plateau.length][plateau[0].length];
+        for(int i = 0; i<plateau.length;i++){
+            for(int j =0; j< plateau[0].length; j++)
+                plat[i][j]=plateau[i][j];
+        }
+        return plat;
     }
 
     public void setPlateau(char[][] plateau){
@@ -127,7 +133,8 @@ public class ModeleConcret implements Modele{
     }
 
     public int[] getPosition(){
-        return position;
+        if(position==null)return null;
+        return new int[]{position[0],position[1]};
     }
 
     public void setPosition(int[] position){
@@ -136,7 +143,8 @@ public class ModeleConcret implements Modele{
 
 
     public int[] getDonnees(){
-        return donnees;
+        if(donnees==null)return null;
+        return new int[]{donnees[0],donnees[1]};
     }
 
     public void setDonnees(int[] donnees) {
@@ -149,4 +157,14 @@ public class ModeleConcret implements Modele{
         else
             position[1]+=ho;
     }
+
+    public void initialiser(char[][]plateau, int[]position, int[]donnees){
+        this.plateau=plateau;
+        this.position=position;
+        this.donnees=donnees;
+    }
+
+
+
+
 }

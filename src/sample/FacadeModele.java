@@ -26,4 +26,16 @@ public class FacadeModele {
     public void undo(){
         modele.undo();
     }
+
+    public void redo(){
+        modele.redo();
+    }
+
+    public void initialiser(char[][] plateau, int[]position, int[]donnees){
+        modele.initialiser(plateau,position, donnees);
+    }
+
+    public void reset(){
+        modele.reset();
+    }
 }
