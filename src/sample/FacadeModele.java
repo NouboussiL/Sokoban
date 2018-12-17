@@ -38,4 +38,12 @@ public class FacadeModele {
     public void reset(){
         modele.reset();
     }
+
+    public void animer(){
+        modele.animer();
+    }
+
+    public void reinitialiserAnimation(){
+        modele.reinitialiserAnimation();
+    }
 }

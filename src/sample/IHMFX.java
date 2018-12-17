@@ -6,14 +6,12 @@ import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Region;
 import javafx.stage.Stage;
 
-import java.io.FileNotFoundException;
 
 public class IHMFX extends Application implements Observateur {
-    VueIHMFX vue;
+    private VueIHMFX vue;
 
     @Override
     public void start(Stage primaryStage)throws Exception{
@@ -35,12 +33,10 @@ public class IHMFX extends Application implements Observateur {
 
     @Override
     public void actualise(){
-        Platform.runLater(() -> {
-            vue.dessine();
-        });
+        Platform.runLater(() -> vue.dessine());
     }
 
-    void lance(){launch(new String[]{});}
+    void lance(){launch();}
 
     private Scene definirFenetre(Stage window, Region node, ControleurIHMFX controleurIHMFX,Region node1){
         MonteurScene monteurScene = new MonteurScene();
@@ -51,6 +47,7 @@ public class IHMFX extends Application implements Observateur {
                 ajoutBas(controleurIHMFX.undo).
                 ajoutBas(controleurIHMFX.redo).
                 ajoutBas(controleurIHMFX.reset).
+                ajoutBas(controleurIHMFX.reanimer).
                 setLargeur(1000).
                 setHauteur(1000).
                 setHaut(node1).

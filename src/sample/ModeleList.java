@@ -3,28 +3,33 @@ package sample;
 import javafx.scene.input.KeyCode;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+
 public class ModeleList implements Modele{
 
     private Modele modele;
 
     ArrayList<Modele> liste;
     ArrayList<Modele> listeUndo;
+    private Iterator<Modele> it;
 
     public ModeleList(Modele modele){
         this.modele = modele;
         this.liste=new ArrayList<>();
         Modele mod = new ModeleConcret();
-        mod.setPlateau(modele.getPlateau());
-        mod.setDonnees(modele.getDonnees());
-        mod.setPosition(modele.getPosition());
+        copier(mod,modele);
         liste.add(mod);
         this.listeUndo = new ArrayList<>();
+        it= liste.iterator();
     }
 
     public void initialiser(char[][] plateau, int[] position, int[] donnees){
         modele.initialiser(plateau,position,donnees);
-        Modele mod = liste.get(liste.size()-1);
+        liste.clear();
+        listeUndo.clear();
+        Modele mod = new ModeleConcret();
         copier(mod,modele);
+        liste.add(mod);
     }
 
 
@@ -43,6 +48,7 @@ public class ModeleList implements Modele{
         mod.setDonnees(modele.getDonnees());
         mod.setPosition(modele.getPosition());
         liste.add(mod);
+        it=liste.iterator();
         listeUndo.clear();
     }
 
@@ -107,5 +113,14 @@ public class ModeleList implements Modele{
             listeUndo.clear();
             liste.add(mod);
         }
+    }
+
+    public void animer(){
+        Modele mod = it.next();
+        copier(modele,mod);
+    }
+
+    public void reinitialiserAnimation(){
+        it=liste.iterator();
     }
 }

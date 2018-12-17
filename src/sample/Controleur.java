@@ -15,8 +15,8 @@ import java.util.*;
 public class Controleur implements Sujet{
 
     private static Controleur singleton;
-    FacadeModele facadeModele;
-    ArrayList<Observateur> observateurs = new ArrayList<>();
+    private FacadeModele facadeModele;
+    private ArrayList<Observateur> observateurs = new ArrayList<>();
 
     public static Controleur getControleur(){
         if(singleton==null)
@@ -43,6 +43,15 @@ public class Controleur implements Sujet{
         facadeModele.move(key);
         notifie();
 
+    }
+
+    public void animer(){
+        facadeModele.animer();
+        notifie();
+    }
+
+    public void reinitialiserAnimation(){
+        facadeModele.reinitialiserAnimation();
     }
 
     public CommandePlateau commandePlateau(){
